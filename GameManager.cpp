@@ -75,7 +75,7 @@ void GameManager::UpdateTitle()
 {
     cout << endl;
     cout << "==============================" << endl;
-    cout << "      簡易コンソールRPG       " << endl;
+    cout << "        RPG       " << endl;
     cout << "==============================" << endl;
     cout << "1 : ゲーム開始" << endl;
     cout << "2 : ゲーム終了" << endl;
