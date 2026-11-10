@@ -37,7 +37,7 @@ void GameManager::Run()
         Update();
     }
 
-    cout << "ゲームを終了します。" << endl;
+    view.ShowExit();
 }
 
 //==============================================================
@@ -73,15 +73,11 @@ void GameManager::Update()
 //==============================================================
 void GameManager::UpdateTitle()
 {
-    cout << endl;
-    cout << "==============================" << endl;
-    cout << "        RPG       " << endl;
-    cout << "==============================" << endl;
-    cout << "1 : ゲーム開始" << endl;
-    cout << "2 : ゲーム終了" << endl;
+    // タイトル画面を表示
+    view.ShowTitle();
 
-    int input;
-    cin >> input;
+    // 入力を受け取る
+    int input = view.GetTitleInput();
 
     if (input == 1)
     {
@@ -113,23 +109,21 @@ void GameManager::UpdateGame()
 
     if (currentEnemy == nullptr)
     {
-        cout << "敵を生成できませんでした。" << endl;
+        view.ShowEnemyCreateError();
         currentState = GameState::GAMEOVER;
         return;
     }
 
-    cout << endl;
-    cout << "========== GAME ==========" << endl;
-    cout << "勇者 HP : " << player.GetHP() << endl;
-    cout << currentEnemy->GetName()
-        << " HP : " << currentEnemy->GetHP()
-        << endl;
+    // ゲーム画面を表示
+    view.ShowGame(
+        player.GetHP(),
+        currentEnemy->GetName(),
+        currentEnemy->GetHP()
+    );
 
-    cout << "1 : 攻撃" << endl;
-    cout << "2 : ゲームオーバーにする" << endl;
+    // 入力を受け取る
+    int input = view.GetGameInput();
 
-    int input;
-    cin >> input;
 
     if (input == 1)
     {
@@ -141,8 +135,6 @@ void GameManager::UpdateGame()
         {
             // 倒した敵のIDを記録してからプールへ戻す
             lastDefeatedEnemyId = currentEnemy->GetID();
-            cout << currentEnemy->GetName()
-                << "を倒した！" << endl;
 
             enemyPool.Release(currentEnemy);
             currentEnemy = nullptr;
@@ -153,8 +145,7 @@ void GameManager::UpdateGame()
         }
 
         // 敵の反撃
-        cout << currentEnemy->GetName()
-            << "の攻撃！" << endl;
+        view.ShowEnemyAttack(currentEnemy->GetName());
 
         player.Damage(currentEnemy->GetAttack());
 
@@ -186,15 +177,11 @@ void GameManager::UpdateClear()
 
     const std::string& name = enemyTable[lastDefeatedEnemyId].name;
 
-    cout << endl;
-    cout << "==============================" << endl;
-    cout << name << " を倒した！" << endl;
-    cout << "戦利品を拾いますか？" << endl;
-    cout << "1 : 拾う" << endl;
-    cout << "2 : 拾わない" << endl;
+    // 戦利品画面を表示
+    view.ShowTreasure(name);
 
-    int input;
-    cin >> input;
+    // 入力を受け取る
+    int input = view.GetTreasureInput();
 
     if (input == 1)
     {
@@ -204,18 +191,11 @@ void GameManager::UpdateClear()
     // 最後の敵を倒したか？
     if (lastDefeatedEnemyId == ENEMY_DATA_SIZE - 1)
     {
-        cout << endl;
-        cout << "==============================" << endl;
-        cout << "        全ての敵を撃破！       " << endl;
-        cout << "          GAME CLEAR          " << endl;
-        cout << "==============================" << endl;
-        cout << "1 : タイトルに戻る" << endl;
-        cout << "2 : ゲーム終了" << endl;
+        view.ShowFinalClear();
 
-        int sel;
-        cin >> sel;
+        int select = view.GetFinalClearInput();
 
-        if (sel == 1)
+        if (select == 1)
         {
             currentState = GameState::TITLE;
         }
@@ -236,15 +216,12 @@ void GameManager::UpdateClear()
 //==============================================================
 void GameManager::UpdateGameOver()
 {
-    cout << endl;
-    cout << "==============================" << endl;
-    cout << "          GAME OVER           " << endl;
-    cout << "==============================" << endl;
-    cout << "1 : タイトルに戻る" << endl;
-    cout << "2 : ゲーム終了" << endl;
+    // ゲームオーバー画面を表示
+    view.ShowGameOver();
 
-    int input;
-    cin >> input;
+    // 入力を受け取る
+    int input = view.GetGameOverInput();
+
 
     if (input == 1)
     {

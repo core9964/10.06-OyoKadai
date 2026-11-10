@@ -1,57 +1,81 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="ソース ファイル">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="ヘッダー ファイル">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
     <Filter Include="リソース ファイル">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="MVC ヘッダー ファイル">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="MVC ヘッダー ファイル\View（ヘッダー）">
+      <UniqueIdentifier>{f003f38c-b434-4350-b957-79d9689991cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MVC ヘッダー ファイル\Controller（ヘッダー）">
+      <UniqueIdentifier>{9bf7f040-a2e2-4867-882f-bbc3feb77d96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MVC ヘッダー ファイル\Model（ヘッダー）">
+      <UniqueIdentifier>{92ea5699-49b0-47f3-a0a1-62f26c2b24c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MVC ソース ファイル">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="MVC ソース ファイル\View">
+      <UniqueIdentifier>{4d4127fb-2eb6-4020-b460-c8c6c92a4100}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MVC ソース ファイル\Controller">
+      <UniqueIdentifier>{756f8f4b-3415-489d-a23e-f73ca9713e29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MVC ソース ファイル\Model">
+      <UniqueIdentifier>{3609114f-d2a5-4843-8cfc-a036967676fc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>MVC ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Enemy.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>MVC ソース ファイル\Model</Filter>
     </ClCompile>
     <ClCompile Include="EnemyPool.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>MVC ソース ファイル\Model</Filter>
     </ClCompile>
     <ClCompile Include="EnemyFactory.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>MVC ソース ファイル\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>MVC ソース ファイル\Model</Filter>
     </ClCompile>
     <ClCompile Include="GameManager.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>MVC ソース ファイル\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="GameView.cpp">
+      <Filter>MVC ソース ファイル\View</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Enemy.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="EnemyData.h">
+      <Filter>MVC ヘッダー ファイル\Model（ヘッダー）</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Enemy.h">
+      <Filter>MVC ヘッダー ファイル\Model（ヘッダー）</Filter>
     </ClInclude>
     <ClInclude Include="EnemyPool.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>MVC ヘッダー ファイル\Model（ヘッダー）</Filter>
     </ClInclude>
     <ClInclude Include="EnemyFactory.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>MVC ヘッダー ファイル\Model（ヘッダー）</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>MVC ヘッダー ファイル\Model（ヘッダー）</Filter>
+    </ClInclude>
+    <ClInclude Include="GameView.h">
+      <Filter>MVC ヘッダー ファイル\View（ヘッダー）</Filter>
     </ClInclude>
     <ClInclude Include="GameManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyData.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>MVC ヘッダー ファイル\Controller（ヘッダー）</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

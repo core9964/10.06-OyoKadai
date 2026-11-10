@@ -2,6 +2,7 @@
 
 #include "Player.h"
 #include "EnemyFactory.h"
+#include "GameView.h"
 
 //==============================================================
 // ゲームの状態
@@ -30,6 +31,8 @@ private:
 
     // ゲームの状態
     GameState currentState;
+
+    GameView view;  // 画面表示・入力担当
 
     // プレイヤー
     Player player;
