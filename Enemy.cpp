@@ -21,6 +21,7 @@ void Enemy::Initialize(const EnemyData& data)
     name = data.name;
     hp = data.hp;
     attack = data.attack;
+    def = data.def;
     active = true;
 }
 
@@ -44,6 +45,29 @@ void Enemy::Damage(int damage)
     if (hp == 0)
     {
         active = false;
+    }
+}
+// 防御あり
+void Enemy::Damage(int damage, int def)
+{
+    if (damage < 0 || damage > 100)
+    {
+        return;
+    }
+    if (def < 0 || def > 100)
+    {
+        return;
+    }
+    // 防御力を考慮してダメージを計算
+    int actualDamage = damage - def;
+    if (actualDamage < 0)
+    {
+        actualDamage = 0; // ダメージが負になる場合は0にする
+    }
+    hp -= actualDamage;
+    if (hp < 0)
+    {
+        hp = 0;
     }
 }
 
@@ -92,4 +116,9 @@ int Enemy::GetHP() const
 int Enemy::GetAttack() const
 {
     return attack;
+}
+
+int Enemy::GetDef() const
+{
+    return def;
 }

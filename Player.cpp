@@ -8,7 +8,8 @@ using namespace std;
 //==============================================================
 Player::Player()
     : hp(MAX_HP),
-    attack(20)
+    attack(20),
+    def(3)
 {
 }
 
@@ -25,11 +26,32 @@ void Player::AttackEnemy(Enemy* enemy)
     cout << "勇者の攻撃！" << endl;
     cout << enemy->GetName()
         << "に"
-        << attack
+        << attack - enemy->GetDef()
         << "ダメージ！"
         << endl;
 
-    enemy->Damage(attack);
+    enemy->Damage(attack,enemy->GetDef());
+}
+
+//連続
+void Player::ApplyHit(Enemy* enemy,int atk_count)
+{
+    if (enemy == nullptr || !enemy->IsAlive())
+    {
+        return;
+    }
+    int atk = 0;
+    for (int i = 0; i < atk_count; i++)
+    {
+        atk += attack - enemy->GetDef();
+    }
+    cout << "勇者の連続攻撃！" << endl;
+    cout << enemy->GetName()
+        << "に"
+        << atk
+        << "ダメージ！"
+        << endl;
+    enemy->Damage(atk);
 }
 
 //==============================================================
@@ -53,6 +75,38 @@ void Player::Damage(int damage)
         << damage
         << "ダメージ受けた！"
         << endl;
+}
+//防御あり
+void Player::Damage(int damage, int def)
+{
+    if (damage < 0||damage>100)
+    {
+        return;
+    }
+    if (def < 0 || def>100)
+    {
+        return;
+    }
+    // 防御力を考慮してダメージを計算
+    int actualDamage = damage - def;
+    if (actualDamage < 0)
+    {
+        actualDamage = 0; // ダメージが負になる場合は0にする
+    }
+    hp -= actualDamage;
+    if (hp < 0)
+    {
+        hp = 0;
+    }
+    cout << "勇者は"
+        << actualDamage
+        << "ダメージ受けた！"
+        << endl;
+}
+//連続ダメージ
+void Player::ApplyDamage(int damage, int def, int damage_count)
+{
+    //ダメージを回数分足してから反映する
 }
 
 //==============================================================
@@ -92,4 +146,10 @@ bool Player::IsAlive() const
 int Player::GetHP() const
 {
     return hp;
+}
+
+//
+int Player::GetDef() const
+{
+    return def;
 }

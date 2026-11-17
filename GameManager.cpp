@@ -128,7 +128,9 @@ void GameManager::UpdateGame()
     if (input == 1)
     {
         // プレイヤーが敵を攻撃
-        player.AttackEnemy(currentEnemy);
+     //   player.AttackEnemy(currentEnemy);
+		// 連続攻撃を適用（例として2回攻撃）
+		player.ApplyHit(currentEnemy, 2);
 
         // 敵を倒したか確認
         if (!currentEnemy->IsAlive())
@@ -147,7 +149,7 @@ void GameManager::UpdateGame()
         // 敵の反撃
         view.ShowEnemyAttack(currentEnemy->GetName());
 
-        player.Damage(currentEnemy->GetAttack());
+        player.Damage(currentEnemy->GetAttack(),player.GetDef());
 
         // プレイヤーが倒れたか確認
         if (!player.IsAlive())

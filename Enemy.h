@@ -13,6 +13,7 @@ private:
     std::string name;
     int hp;
     int attack;
+	int def;// 防御力
     bool active;
 
 public:
@@ -24,6 +25,7 @@ public:
 
     // ダメージ処理
     void Damage(int damage);
+	void Damage(int damage, int def); // 防御力を考慮したダメージ処理
 
     // 生存確認
     bool IsAlive() const;
@@ -39,4 +41,6 @@ public:
     const std::string& GetName() const; // コピーを避けるため参照で返すように変更
     int GetHP() const;
     int GetAttack() const;
+
+	int GetDef() const; // 防御力を取得する関数
 };
